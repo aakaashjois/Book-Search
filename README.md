@@ -8,7 +8,11 @@
 ## Prototype Design
 ### Mobile devices
 ![Main Page](design_images/mobile_layout_main_page.jpg "Main Page")
+#### Main Page
 ![Detail Page](design_images/mobile_layout_detail_page.jpg "Detail Page")
+#### Detail Page
 ### Desktop devices
 ![Main Page](design_images/desktop_layout_main_page.jpg "Main Page")
+#### Main Page
 ![Detail Page](design_images/desktop_layout_detail_page.jpg "Detail Page")
+#### Detail Page
