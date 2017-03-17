@@ -12,4 +12,4 @@ Book Search allows the user to easily search for books using Google Books API. T
 
 Book Search is designed to work on mobile phones, tablets and desktop computers.
 
-![Screenshot](prototype/screenshot.jpg)
+![Screenshot](prototype/screenshot.jpeg)
