@@ -8,6 +8,10 @@ header {
     width: 100%;
 }
 
+main {
+    padding-top: 150px;
+}
+
 .search-form {
     padding: 20px;
 }
