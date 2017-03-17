@@ -14,15 +14,18 @@ $(function () {
 function getQuery() {
     states.searchQuery = $('[type="text"]').val();
     states.startIndex = 0;
-    console.log("Start Index:" + states.startIndex);
+    resetAll();
+    getDatafromApi();
+}
+
+function resetAll() {
     $('.books').empty();
     states.items = undefined;
-    getDatafromApi();
+
 }
 
 function getNextPage() {
     states.startIndex = states.startIndex + 40;
-    console.log("Start index: " + states.startIndex);
     getDatafromApi();
 }
 
@@ -38,62 +41,42 @@ function getDatafromApi() {
                 states.items = items;
             else
                 states.items = states.items.concat(items);
-            console.log("Items Length: " + states.items.length);
             createOverview();
-        } else console.log("End of data");
+        }
     });
 }
 
 function extractData(response) {
-    console.log("Extract data");
     var items = [];
     response.forEach(function (item) {
-        if (item.volumeInfo != undefined) {
-            if (item.volumeInfo.imageLinks != undefined)
-                if (item.volumeInfo.imageLinks.thumbnail != undefined)
-                    var thumbnail = item.volumeInfo.imageLinks.thumbnail;
-                else
-                    var thumbnail = "images/white.jpg";
+        if (item.volumeInfo != undefined)
             if (item.volumeInfo.title != undefined)
-                var title = item.volumeInfo.title;
-            else
-                var title = "Book Name not found";
-            if (item.volumeInfo.subtitle != undefined)
-                var subtitle = item.volumeInfo.subtitle;
-            else
-                var subtitle = "No subtitle for this book";
-            if (item.volumeInfo.authors != undefined)
-                var author = item.volumeInfo.authors[0];
-            else
-                var author = "Unknown author";
-            if (item.volumeInfo.description != undefined)
-                var description = item.volumeInfo.description;
-            else
-                var description = "No description found";
-            if (item.saleInfo != undefined) {
-                if (item.saleInfo.buyLink != undefined)
-                    var buyLink = item.saleInfo.buyLink;
-                else
-                    var buyLink = null;
-            }
-            items.push({
-                thumbnail: thumbnail,
-                title: title,
-                subtitle: subtitle,
-                author: author,
-                description: description,
-                buyLink: buyLink
-            });
-        } else console.log("No volumeInfo");
+                if (item.volumeInfo.imageLinks != undefined)
+                    if (item.volumeInfo.imageLinks.thumbnail != undefined) {
+                        var thumbnail = item.volumeInfo.imageLinks.thumbnail;
+                        var title = item.volumeInfo.title;
+                        var subtitle = (item.volumeInfo.subtitle != undefined) ? item.volumeInfo.subtitle : null;
+                        var author = (item.volumeInfo.authors != undefined) ? item.volumeInfo.authors[0] : null;
+                        var description = (item.volumeInfo.description != undefined) ? item.volumeInfo.description : null;
+                        if (item.saleInfo != undefined)
+                            var buyLink = (item.saleInfo.buyLink != undefined) ? item.saleInfo.buyLink : null;
+                        items.push({
+                            thumbnail: thumbnail,
+                            title: title,
+                            subtitle: subtitle,
+                            author: author,
+                            description: description,
+                            buyLink: buyLink
+                        });
+                    }
     });
     return items;
 }
 
 function createOverview() {
-    console.log("Creating Overview");
     for (var i = states.startIndex; i < states.items.length; i++) {
         item = states.items[i];
-        $('.books').append("<div class='book' id=" + i + ">" +
+        $('.books').append("<div class='book card' id=" + i + ">" +
             "<img src='" + item.thumbnail + "'>" +
             "<p>" + item.title + "</p>" +
             "</div>");
@@ -105,19 +88,18 @@ function createOverview() {
 }
 
 function createDetailContent(index) {
+    $('.book-subtitle').show();
+    $('.book-author').show();
+    $('.book-description').show();
+    $('.book-buy').show();
     item = states.items[index];
     $('.close').click(function () {
         $('.book-detail').hide();
     });
     $('.book-cover').attr('src', item.thumbnail);
     $('.book-title').html(item.title);
-    $('.book-subtitle').html(item.subtitle);
-    $('.book-author').html(item.author);
-    $('.book-description').html(item.description);
-    if (item.buyLink == null)
-        $('.book-buy').hide();
-    else
-        $('.book-buy').attr('href', item.buyLink);
+    (item.subtitle == null) ? $('.book-subtitle').hide() : $('.book-subtitle').html(item.subtitle);
+    (item.author == null) ? $('.book-author').hide() : $('.book-author').html(item.author);
+    (item.description == null) ? $('.book-description').hide() : $('.book-description').html(item.description);
+    (item.buyLink == null) ? $('.book-buy').hide() : $('.book-buy').attr('href', item.buyLink);
 }
-//TODO: Create empty state when no books are found
-//TODO: Allow user to exit detail state by clicking outside the box

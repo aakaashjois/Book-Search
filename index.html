@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed" rel="stylesheet">
 </head>
 
 <body>
@@ -14,7 +15,7 @@
         <div>
             <h1>Book Search</h1>
             <form class="search-form">
-                <input type="text" name="search" placeholder="Search...">
+                <input class="card" type="text" name="search" placeholder="Search..." required>
                 <input type="submit" name="submit">
             </form>
         </div>
@@ -23,7 +24,7 @@
         <div class="books">
         </div>
         <div class="book-detail">
-            <div class="book-detail-content">
+            <div class="book-detail-content card">
                 <span class="close">&times;</span>
                 <img class="book-cover">
                 <h2 class="book-title"></h2>
