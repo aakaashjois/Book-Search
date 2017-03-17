@@ -74,28 +74,31 @@ function extractData(response) {
 }
 
 function createOverview() {
-    for (var i = states.startIndex; i < states.items.length; i++) {
-        item = states.items[i];
-        $('.books').append("<div class='book card' id=" + i + ">" +
-            "<img src='" + item.thumbnail + "'>" +
-            "<p>" + item.title + "</p>" +
-            "</div>");
+    if (states.items.length > 0) {
+        $('.empty-view').hide();
+        for (var i = states.startIndex; i < states.items.length; i++) {
+            item = states.items[i];
+            $('.books').append("<div class='book card' id=" + i + ">" +
+                "<img src='" + item.thumbnail + "'>" +
+                "<p>" + item.title + "</p>" +
+                "</div>");
+        }
+        $('.book').click(function () {
+            createDetailContent(this.id);
+            $('.book-detail').show();
+        });
     }
-    $('.book').click(function () {
-        createDetailContent(this.id);
-        $('.book-detail').show();
-    });
 }
 
 function createDetailContent(index) {
-    $('.book-subtitle').show();
-    $('.book-author').show();
-    $('.book-description').show();
-    $('.book-buy').show();
     item = states.items[index];
     $('.close').click(function () {
         $('.book-detail').hide();
     });
+    $('.book-subtitle').show();
+    $('.book-author').show();
+    $('.book-description').show();
+    $('.book-buy').show();
     $('.book-cover').attr('src', item.thumbnail);
     $('.book-title').html(item.title);
     (item.subtitle == null) ? $('.book-subtitle').hide() : $('.book-subtitle').html(item.subtitle);

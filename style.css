@@ -2,55 +2,19 @@
     font-family: 'Roboto', sans-serif;
 }
 
-.search-form input[type="text"] {
-    font-family: 'Roboto Condensed', sans-serif;
-    border: none;
-    padding: 5px;
-}
-
-.search-form input[type="text"]:focus, 
-.search-form input[type="text"]:valid {
-    box-shadow: none;
-    outline: none;
-}
-
-.search-form input[type="submit"]{
-    display: none;
-}
-
-.search-form input[type="submit"]:focus,
-.search-form input[type="submit"]:valid {
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+main {
+    padding-top: 80px;
 }
 
 body {
     background: #E0E0E0;
 }
 
-.card {
-    background: #FAFAFA;
-    border-radius: 2px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-}
-
-.book:hover {
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-
 header {
     position: fixed;
-    background-color:#009688;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    background-color: #009688;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     width: 100%;
-}
-
-main {
-    padding-top: 150px;
-}
-
-.search-form {
-    padding: 20px;
 }
 
 header div {
@@ -72,6 +36,72 @@ h1 {
     padding: 20px;
 }
 
+button {
+    cursor: pointer;
+    box-sizing: border-box;
+    border-width: 0;
+    outline: none;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    background: #009688;
+    color: #FAFAFA;
+}
+
+button>span {
+    line-height: 2em;
+    padding: 20px;
+}
+
+button:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.search-form {
+    max-width: 350px;
+    width: 100%;
+    padding: 20px;
+}
+
+.search-form input[type="text"] {
+    width: 100%;
+    font-family: 'Roboto Condensed', sans-serif;
+    border: none;
+    padding: 5px;
+}
+
+.search-form input[type="text"]:focus,
+.search-form input[type="text"]:valid {
+    box-shadow: none;
+    outline: none;
+}
+
+.search-form input[type="submit"] {
+    display: none;
+}
+
+.search-form input[type="submit"]:focus,
+.search-form input[type="submit"]:valid {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.card {
+    background: #FAFAFA;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+.book:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.book {
+    cursor: pointer;
+    width: 200px;
+    display: inline-block;
+    margin: 20px;
+}
+
 .book p {
     max-width: 200px;
     padding-top: 5px;
@@ -83,13 +113,6 @@ h1 {
     white-space: nowrap;
     display: block;
     text-align: center;
-}
-
-.book {
-    cursor: pointer;
-    width: 200px;
-    display: inline-block;
-    margin: 20px;
 }
 
 .books {
@@ -136,9 +159,14 @@ h1 {
 }
 
 .book-cover {
-    float: left;
-    padding-left: 10px;
-    padding-right: 10px;
+    display: inline-block;
+    padding: 10px;
+}
+
+.book-title-holder {
+    display: inline-block;
+    padding: 10px;
+    vertical-align: top;
 }
 
 .close {
@@ -153,4 +181,27 @@ h1 {
     color: gray;
     text-decoration: none;
     cursor: pointer;
+}
+
+.empty-view {
+    padding: 50px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+@media only screen and (max-width: 640px) {
+    h1 {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+    .search-form {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    main {
+        padding-top: 150px;
+    }
 }
